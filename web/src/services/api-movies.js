@@ -1,32 +1,14 @@
 // login
 
-const getMoviesFromApi = () => {
-  console.log('Se están pidiendo las películas de la app');
-  return fetch('//beta.adalab.es/ejercicios-extra/api/fake/empty.json')
-    .then(response => response.json())
-    .then(() => {
-      return {
-        success: true,
-        movies: [
-          {
-            id: '1',
-            title: 'Gambita de dama',
-            gender: 'Drama',
-            image: 'https://via.placeholder.com/150'
-          },
-          {
-            id: '2',
-            title: 'Friends',
-            gender: 'Comedia',
-            image: 'https://via.placeholder.com/150'
-          }
-        ]
-      };
-    });
+const getMoviesFromApi = (data) => {
+  console.log("Se están pidiendo las películas de la app", data);
+  return fetch(
+    `http://localhost:4000/movies?gender=${data.gender}&sort=${data.sort}`
+  ).then((response) => response.json());
 };
 
 const objToExport = {
-  getMoviesFromApi: getMoviesFromApi
+  getMoviesFromApi: getMoviesFromApi,
 };
 
 export default objToExport;
